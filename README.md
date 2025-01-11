@@ -146,9 +146,6 @@ print(result['final_doc'])
 
 Contributions are welcome! If you want to contribute to the development of this project, please feel free to submit a pull request. For any issues, open a new issue on GitHub.
 
-## 📝 License
-
-[Insert License Information Here]
 
 ## 🙏 Acknowledgments
 
