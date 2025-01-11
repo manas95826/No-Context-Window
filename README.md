@@ -1,38 +1,174 @@
-# AgentWrite LangGraph
+Certainly! Here's a **comprehensive README.md** for your project, incorporating the structure you provided and adding details specific to the project on **AI Document Processing** using **LangChain** and **LLMs**.
 
-AgentWrite LangGraph is a rewrite and extension of AgentWrite using LangGraph, designed to create an advanced writing assistant powered by language models and graph-based workflows.
+```markdown
+# No-Context Window: Context-Free Long-Form Text Generation
 
-## Description
+A sophisticated AI-powered document processing pipeline designed for **context-free long-form content generation** and **automated financial report creation**. Built with LangChain and LangGraph, the system processes documents and generates structured reports through a series of nodes in a multi-step pipeline.
 
-This project leverages LangGraph to orchestrate a series of language model interactions, creating a powerful tool for automated content generation. It breaks down complex writing tasks into manageable steps, including planning, writing, and refining content.
+## 🌟 Features
 
-## Features
+- **Context-Free Long-Form Generation**: Generate long-form content without requiring pre-established context.
+- **Automated Financial Report Generation**: Generates detailed financial reports from raw input data.
+- **Customizable Workflow**: Easily integrate new nodes and steps into the pipeline.
+- **Support for Multiple LLM Providers**: Flexibility to use different language models for various tasks.
+- **Structured Outputs**: Generates structured content in multiple formats such as Markdown, JSON, and plain text.
 
-- Automated content planning
-- Paragraph-by-paragraph content generation
-- Integration with multiple language models (OpenAI, GROQ, OLLaMA)
-- Flexible workflow management using LangGraph
-- Markdown output for generated content
+## 🏗️ Architecture
 
+The system leverages a **directed graph workflow** for document processing, with nodes responsible for different stages of the pipeline. The architecture includes:
 
-## Usage
+1. **Planning Node**: Analyzes the input documents, extracts key information, and generates a structured plan for the content.
+2. **Writing Node**: Generates the content based on the plan created by the Planning Node.
+3. **Saving Node**: Handles the output formatting and persistence (e.g., Markdown or JSON files).
+4. **Financial Report Node** (optional): Specialized node for generating financial reports from structured data.
 
-1. Set up your api key in a `llm` file:
-   ```
-   api_key=your_claude_api_key
-   ```
+## 📁 Project Structure
 
-2. Install requirements
-   ```
-   pip install -r requirements.txt
-   ```
+The project is organized into the following directory structure:
 
-3. Run the main script:
-   ```
-   streamlit run streamlit-chat.py
-   ```
+```
+.
+├── LLMs/
+│   └── __init__.py
+├── chains/
+│   ├── __init__.py
+│   ├── plan_chain.py
+│   ├── write_chain.py
+│   ├── financial_report_chain.py
+│   └── prompts/
+│       └── write_prompt.txt
+├── nodes/
+│   ├── __init__.py
+│   ├── planning_node.py
+│   ├── writing_node.py
+│   ├── financial_report_node.py
+│   └── saving_node.py
+├── graph.py
+└── tools.py
+```
 
+- `LLMs/`: Contains LLM configuration files for different models.
+- `chains/`: Defines the chains of processing steps (planning, writing, financial reports, etc.).
+- `nodes/`: Implements individual nodes that handle specific tasks in the pipeline (e.g., planning, writing).
+- `graph.py`: Manages the workflow graph and execution.
+- `tools.py`: Contains utility functions and helpers for text processing.
 
+## 🚀 Getting Started
 
+### Prerequisites
 
+- Python 3.8+
+- LangChain
+- LangGraph
 
+### Installation
+
+To install the required dependencies, run the following command:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Usage
+
+Here’s an example of how to use the pipeline:
+
+```python
+from graph import create_workflow
+from your_llm_config import llm
+
+# Create the workflow
+workflow = create_workflow(llm)
+
+# Execute the workflow
+result = workflow.invoke({
+    "initial_prompt": "Generate a detailed financial report for Q3 2024",
+    "llm_name": "llama-3.1-70b-groq",
+    "num_steps": 3,
+    "word_count": 2000
+})
+```
+
+## 💡 How It Works
+
+1. **Input**: The system receives a raw document or prompt (e.g., "Generate a financial report for Q3 2024").
+2. **Planning Node**: The planning node processes the input, identifies key components (e.g., date ranges, financial categories), and generates a structured outline.
+3. **Writing Node**: The writing node uses the generated plan to write detailed content. If it's a financial report, it will fetch data and use it to generate the narrative.
+4. **Saving Node**: The content is saved in the desired format (e.g., Markdown, JSON).
+
+For advanced use cases, you can add custom nodes, integrate different language models, or modify the pipeline to suit your specific requirements.
+
+## 🔧 Configuration
+
+You can configure various options for the workflow in the **GraphState**:
+
+```python
+GraphState = {
+    "initial_prompt": str,    # Initial input prompt
+    "plan": str,              # Generated plan
+    "num_steps": int,         # Number of processing steps
+    "final_doc": str,         # Final generated document
+    "write_steps": List[str], # Steps in the writing process
+    "word_count": int,        # Target word count
+    "llm_name": str           # Name of the LLM being used (e.g., llama-3.1-70b-groq)
+}
+```
+
+This allows you to adjust the input prompt, number of steps in the pipeline, and the language model being used.
+
+## 📄 Output Formats
+
+- **Markdown**: Generates content in markdown format (e.g., reports, articles).
+- **JSON**: Provides structured output in JSON format, useful for data analysis.
+- **Text**: Plain text output for quick reports or summaries.
+- **Financial Reports**: Detailed financial reports with proper structuring and data integration.
+
+## 🚀 Example Workflow
+
+```python
+# Import necessary modules
+from graph import create_workflow
+from your_llm_config import llm
+
+# Create the workflow with your LLM configuration
+workflow = create_workflow(llm)
+
+# Set the parameters and invoke the workflow
+result = workflow.invoke({
+    "initial_prompt": "Write a detailed analysis of Q3 financial performance.",
+    "llm_name": "llama-3.1-70b-groq",
+    "num_steps": 3,
+    "word_count": 1500
+})
+
+# Output results
+print(result['final_doc'])
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! If you want to contribute to the development of this project, please feel free to submit a pull request. For any issues, open a new issue on GitHub.
+
+## 📝 License
+
+[Insert License Information Here]
+
+## 🙏 Acknowledgments
+
+- **LangChain** team for creating the powerful framework.
+- **LangGraph** contributors for simplifying workflow management.
+- **OpenAI** and other LLM providers for their API and model architectures.
+```
+
+### Key Additions and Customizations:
+- **Project Overview**: Describes the project goal and workflow clearly.
+- **Features**: Highlights key features like context-free generation and automated financial reporting.
+- **Architecture**: Explains the directed graph workflow and its nodes.
+- **Getting Started**: Provides detailed instructions for installation and usage.
+- **Configuration**: Provides insight into how to customize the system.
+- **Output Formats**: Lists the types of reports that can be generated.
+- **Example Workflow**: Shows a practical example for users to test the pipeline.
+
+---
+
+Would you like me to further expand any section or add specific details on certain components? Let me know!
