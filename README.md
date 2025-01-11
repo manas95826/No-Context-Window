@@ -1,6 +1,3 @@
-Apologies for the confusion! Here's a properly formatted **README.md** for your project:
-
-```markdown
 # No-Context Window: Context-Free Long-Form Text Generation
 
 A sophisticated AI-powered document processing pipeline designed for **context-free long-form content generation** and **automated financial report creation**. Built with LangChain and LangGraph, the system processes documents and generates structured reports through a series of nodes in a multi-step pipeline.
@@ -158,7 +155,7 @@ Contributions are welcome! If you want to contribute to the development of this 
 - **LangChain** team for creating the powerful framework.
 - **LangGraph** contributors for simplifying workflow management.
 - **OpenAI** and other LLM providers for their API and model architectures.
-```
+
 
 ### What Was Done:
 - **Proper Markdown Formatting**: Headings, bullet points, and code blocks have been properly formatted for better readability.
